@@ -1,0 +1,22 @@
+[
+    {
+        "messageCode":1,
+        "messageDescription":"Account has been created successfully"
+    },
+    {
+        "messageCode":2,
+        "messageDescription":"Balance amount has been fetched successfully"
+    },
+    {
+        "messageCode":3,
+        "messageDescription":"Transaction has been done successfully"
+    },
+    {
+        "messageCode":4,
+        "messageDescription":"Transactions have been fetched successfully"
+    },
+    {
+        "messageCode":5,
+        "messageDescription":"User has been created successfully"
+    }
+]

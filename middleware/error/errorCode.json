@@ -1,0 +1,80 @@
+[
+    {
+        "errorCode":1,
+        "errorDescription":"Account Currency should be of length 3"
+    },
+    {
+        "errorCode":2,
+        "errorDescription":"Account id should be of length 10"
+    },
+    {
+        "errorCode":3,
+        "errorDescription":"Account id: $accountId$ already exists",
+        "placeHolders":[
+            "$accountId$"
+        ]
+    },
+    {
+        "errorCode":4,
+        "errorDescription":"Account id: $accountId$ does not exist",
+        "placeHolders":[
+            "$accountId$"
+        ]
+    },
+    {
+        "errorCode":5,
+        "errorDescription":"Invalid account id"
+    },
+    {
+        "errorCode":6,
+        "errorDescription":"Invalid from account id"
+    },
+    {
+        "errorCode":7,
+        "errorDescription":"Invalid to account id"
+    },
+    {
+        "errorCode":8,
+        "errorDescription":"The account does not have enough balance to do the transaction"
+    },
+    {
+        "errorCode":9,
+        "errorDescription":"Invalid transfer currency"
+    },
+    {
+        "errorCode":10,
+        "errorDescription":"Amount is not a number"
+    },
+    {
+        "errorCode":11,
+        "errorDescription":"Invalid date format. Valid date format is YYYY-MM-DD"
+    },
+    {
+        "errorCode":12,
+        "errorDescription":"No records found for the given date"
+    },
+    {
+        "errorCode":13,
+        "errorDescription":"Invalid id"
+    },
+    {
+        "errorCode":14,
+        "errorDescription":"Invalid name"
+    },
+    {
+        "errorCode":15,
+        "errorDescription":"The user id already exists"
+    },
+    {
+        "errorCode":16,
+        "errorDescription":"Invalid balance amount"
+    },
+    {
+        "errorCode":17,
+        "errorDescription":"Invalid account currency"
+    },
+    {
+        "errorCode":18,
+        "errorDescription":"Invalid transfer amount"
+    }
+]

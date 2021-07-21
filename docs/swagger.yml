@@ -1,0 +1,236 @@
+swagger: "2.0"
+info:
+  title: Payperform coding challenge
+  description: APIs for FAKE bank
+  version: 1.0.0
+  contact: 
+    name: Vignesh Ramamurthy
+    email: rvignesh12jun@gmail.com
+
+host: localhost:8080
+basePath: /v1
+schemes:
+  - http
+paths:
+  /users/:id/account:
+    post:
+      summary: Links the given account with the user.
+      description: Account id should be unique, user should exist, initial balance should not be negative.
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: The user id for which account to be linked
+          schema:
+            type: integer
+        - in: body
+          name: account
+          description: The account to create.
+          schema:
+            $ref: '#/definitions/Account'
+      responses:
+        201:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/AccountResponse'
+  /users:
+    post:
+      summary: creates the user with the given details
+      description: id should be unique
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: The user to create
+          schema:
+            $ref: '#definitions/User'
+      responses:
+        201:
+          description: Successful response
+          schema:
+            $ref: '#definitions/UserResponse'
+  /transaction:
+    post:
+      summary: performs money transaction between the from account and to account
+      description: from and to accounts should exist, transaction amount should not be negative, from account should have enough balance, transaction currency should match from and to account currencies
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: transaction
+          description: The transaction to perform
+          schema:
+            $ref: '#definitions/Transaction'
+      responses:
+        201:
+          description: Successful response
+          schema:
+            $ref: '#definitions/TransactionResponse'
+    
+  /transaction/history:
+    get:
+      summary: fetches transaction history for the given accountId and transaction date(optional)
+      description: accountId should exist, transaction date should be in YYYY-MM-DD format
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: accountId
+          description: The account id to fetch transaction history
+          schema:
+            type: integer
+        - in: query
+          name: transactionDate
+          description: The transaction date to fetch transaction history
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#definitions/TransactionHistoryResponse'
+  /account/balance/fetch:
+    get:
+      summary: feches balance for the given account
+      description: accountId should exist
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: accountId
+          description: The account id to fetch balances
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#definitions/BalanceResponse'
+
+definitions:
+  Account:           
+    type: object
+    required:
+      - balanceAmount
+      - accountCurrency
+      - accountId
+    properties:
+      balanceAmount:
+        type: integer
+      accountCurrency:
+        type: string
+      accountId:
+        type: string
+  AccountResponse:
+    type: object
+    properties:
+      description:
+        type: string
+      statusCode:
+        type: integer
+      payload:
+        type: object
+        properties:
+          accountIds: 
+            type: array
+            items:
+              type: string
+          userId:
+            type: integer
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    required:
+      - id
+      - name
+  
+  UserResponse:
+    type: object
+    properties:
+      description:
+        type: string
+      statuscode:
+        type: integer
+      payload:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+  Transaction:
+    type: object
+    properties:
+      fromAccountId:
+        type: string
+      toAccountId:
+        type: string
+      transactionAmount:
+        type: integer
+      transactionCurrency:
+        type: string
+
+  TransactionResponse:
+    type: object
+    properties:
+      description:
+        type: string
+      statuscode:
+        type: integer
+      payload:
+        type: object
+        properties:
+          balanceAmount:
+            type: integer
+ 
+  TransactionHistoryResponse:
+    type: object
+    properties:
+      description:
+        type: string
+      statuscode:
+        type: integer
+      payload:
+        type: object
+        properties:
+          _id:
+            type: integer
+          fromAccount:
+            type: string
+          toAccount:
+            type: string
+          transactionAmount:
+            type: integer
+          transactionCurrency:
+            type: string
+          transactionDate:
+            type: string
+
+  BalanceResponse:
+    type: object
+    properties:
+      description:
+        type: string
+      statuscode:
+        type: integer
+      payload:
+        type: object
+        properties:
+          balanceAmount:
+            type: integer
+          accountCurrency:
+            type: string
+
+
