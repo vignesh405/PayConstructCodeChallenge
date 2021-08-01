@@ -1,8 +1,7 @@
 FROM node:12-slim
 
 WORKDIR /starter
-ENV NODE_ENV development
-
+ENV NODE_ENV production
 COPY package.json /starter/package.json
 
 RUN npm install --production
