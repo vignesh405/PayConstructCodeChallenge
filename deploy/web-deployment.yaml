@@ -1,0 +1,18 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: web
+spec:
+  template:
+    spec:
+      containers:
+        - image: vignesh405/payconstructcodechallenge:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: BASE_URL
+              value: http://localhost:8080
+            - name: MONGODB_URI
+              value: mongodb://MONGO_IP:27017/test
+            - name: NODE_ENV
+              value: production
